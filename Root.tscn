@@ -142,6 +142,8 @@ tile_data = PoolIntArray( -1638399, 0, 0, -1638398, 0, 0, -1638397, 0, 0, -16383
 
 [node name="CropTileMap" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
+collision_layer = 4
+collision_mask = 4
 format = 1
 tile_data = PoolIntArray( -917475, 0, 0, -589813, 0, 0, -589812, 0, 0, -589811, 0, 0, -589810, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -393194, 0, 0, -393193, 0, 0, -393192, 0, 0, -65531, 0, 0, -65530, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65516, 0, 0, -65515, 0, 0 )
 script = ExtResource( 10 )
@@ -154,3 +156,5 @@ position = Vector2( 1835, -340 )
 speed = 1000
 jump_height = 2000
 gravity = 2000
+
+[connection signal="crop_harvested" from="Friend" to="CropTileMap" method="_on_Friend_crop_harvested"]

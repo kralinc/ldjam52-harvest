@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal crop_harvested(location)
+
 export var speed = 100
 export var jump_height = 100
 export var dash_power = 3
@@ -13,6 +15,7 @@ var air_time = 0
 var AIR_TIME_GRACE_PERIOD = 0.2
 var FLOOR_DETECT_DISTANCE = 20.0
 onready var SPRITE = $AnimatedSprite
+onready var WEAPON = $Weapon
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,10 +29,12 @@ func _physics_process(delta):
 		vel.x -= speed
 		SPRITE.flip_h = false
 		SPRITE.offset.x = 0
+		WEAPON.position.x = 0
 	if(Input.is_action_pressed("right")):
 		vel.x += speed
 		SPRITE.flip_h = true
 		SPRITE.offset.x = 200
+		WEAPON.position.x = 300
 		
 	if(Input.is_action_just_pressed("attack")):
 		SPRITE.animation = "Attack"
@@ -69,3 +74,8 @@ func _physics_process(delta):
 
 func _on_AnimatedSprite_animation_finished():
 	SPRITE.animation = "default"
+
+
+func _on_Weapon_area_entered(area):
+	if(SPRITE.animation == "Attack"):
+		emit_signal("crop_harvested", area.crop)

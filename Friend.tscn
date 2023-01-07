@@ -42,13 +42,16 @@ limit_bottom = 64
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
-frame = 1
 playing = true
 
 [node name="Weapon" type="Area2D" parent="."]
+collision_layer = 6
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Weapon"]
 position = Vector2( -54.6667, 12 )
 shape = SubResource( 6 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="area_entered" from="Weapon" to="." method="_on_Weapon_area_entered"]
+[connection signal="body_entered" from="Weapon" to="." method="_on_Weapon_body_entered"]
