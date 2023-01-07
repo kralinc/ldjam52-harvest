@@ -1,5 +1,8 @@
 extends TileMap
 
+signal upgrade
+signal seed_planted
+
 onready var CropArea = preload("res://CropArea.tscn")
 
 var crop_lifetimes  = Dictionary()
@@ -23,7 +26,7 @@ func _process(delta):
 func set_crop_level(crop):
 	var life = crop_lifetimes[crop]
 	var tile = 0
-	if life > 4:
+	if life > 40:
 		tile = 4
 	elif life > 30:
 		tile = 3
@@ -33,10 +36,22 @@ func set_crop_level(crop):
 		tile = 1
 		
 	set_cell(crop.x, crop.y, tile)
+	
+func destroy_crop(location):
+	set_cell(location.x, location.y, -1)
+	crop_lifetimes.erase(location)
 
 
 func _on_Friend_crop_harvested(location):
-	print(get_cellv(location))
 	if (get_cellv(location) == 4):
-		set_cell(location.x, location.y, -1)
-		crop_lifetimes.erase(location)
+		destroy_crop(location)
+		emit_signal("upgrade")
+
+
+
+func _on_Friend_is_crop_here(location):
+	if(get_cellv(location) == -1):
+		print("there is no crop there")
+		set_cellv(location, 0)
+		crop_lifetimes[location] = 0.0
+		emit_signal("seed_planted")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Images/farm.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/grass.png" type="Texture" id=2]
@@ -10,6 +10,9 @@
 [ext_resource path="res://Seed Shack.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/Images/crop1.png" type="Texture" id=9]
 [ext_resource path="res://CropTileMap.gd" type="Script" id=10]
+[ext_resource path="res://Floor.gd" type="Script" id=11]
+[ext_resource path="res://GM.gd" type="Script" id=12]
+[ext_resource path="res://Assets/Images/Font.tres" type="DynamicFont" id=13]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
@@ -133,19 +136,24 @@ points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
 4/shapes = [  ]
 4/z_index = 0
 
-[node name="Root" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 55.5, 1414.5 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Root" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="Floor" type="TileMap" parent="."]
 tile_set = SubResource( 3 )
 format = 1
-tile_data = PoolIntArray( -1638399, 0, 0, -1638398, 0, 0, -1638397, 0, 0, -1638396, 0, 0, -1638395, 0, 0, -1638376, 0, 0, -1638375, 0, 0, -1638374, 0, 0, -1638373, 0, 0, -1376245, 0, 0, -1376244, 0, 0, -1376243, 0, 0, -1179628, 0, 0, -1179627, 0, 0, -917500, 0, 0, -917499, 0, 0, -851939, 0, 0, -851938, 0, 0, -851937, 0, 0, -524277, 0, 0, -524276, 0, 0, -524275, 0, 0, -524274, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -327658, 0, 0, -327657, 0, 0, -327656, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 0, 0, 6, 0, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 0, 0, 21, 0, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 1, 0 )
+tile_data = PoolIntArray( -1638399, 0, 0, -1638398, 0, 0, -1638397, 0, 0, -1638396, 0, 0, -1638395, 0, 0, -1638376, 0, 0, -1638375, 0, 0, -1638374, 0, 0, -1638373, 0, 0, -1376245, 0, 0, -1376244, 0, 0, -1376243, 0, 0, -1179628, 0, 0, -1179627, 0, 0, -1114070, 0, 0, -1114069, 0, 0, -1114068, 0, 0, -917500, 0, 0, -917499, 0, 0, -851939, 0, 0, -851938, 0, 0, -851937, 0, 0, -524277, 0, 0, -524276, 0, 0, -524275, 0, 0, -524274, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -327658, 0, 0, -327657, 0, 0, -327656, 0, 0, -327637, 0, 0, -327636, 0, 0, -327635, 0, 0, 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 1, 0, 4, 1, 0, 5, 0, 0, 6, 0, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 10, 1, 0, 11, 1, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 1, 0, 16, 1, 0, 17, 1, 0, 18, 1, 0, 19, 1, 0, 20, 0, 0, 21, 0, 0, 22, 1, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 31, 1, 0, 32, 1, 0, 33, 1, 0, 34, 1, 0, 35, 1, 0, 36, 1, 0, 37, 1, 0, 38, 1, 0, 39, 1, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 1, 0, 44, 1, 0, 45, 1, 0, 46, 1, 0, 47, 1, 0 )
+script = ExtResource( 11 )
 
 [node name="CropTileMap" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
 collision_layer = 4
 collision_mask = 4
 format = 1
-tile_data = PoolIntArray( -917475, 0, 0, -589813, 0, 0, -589812, 0, 0, -589811, 0, 0, -589810, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -393194, 0, 0, -393193, 0, 0, -393192, 0, 0, -65531, 0, 0, -65530, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65516, 0, 0, -65515, 0, 0 )
+tile_data = PoolIntArray( -1703935, 0, 0, -1703934, 0, 0, -1703933, 0, 0, -1703932, 0, 0, -1703931, 0, 0, -1703912, 0, 0, -1703911, 0, 0, -1703910, 0, 0, -1703909, 0, 0, -1441781, 0, 0, -1441780, 0, 0, -1441779, 0, 0, -1245164, 0, 0, -1245163, 0, 0, -1179606, 0, 0, -1179605, 0, 0, -1179604, 0, 0, -983036, 0, 0, -983035, 0, 0, -917475, 0, 0, -917474, 0, 0, -917473, 0, 0, -589813, 0, 0, -589812, 0, 0, -589811, 0, 0, -589810, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -393194, 0, 0, -393193, 0, 0, -393192, 0, 0, -393173, 0, 0, -393172, 0, 0, -393171, 0, 0, -65531, 0, 0, -65530, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65516, 0, 0, -65515, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0 )
 script = ExtResource( 10 )
 
 [node name="Seed Shack" parent="." instance=ExtResource( 8 )]
@@ -153,8 +161,46 @@ position = Vector2( 1779, -84 )
 
 [node name="Friend" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1835, -340 )
-speed = 1000
-jump_height = 2000
-gravity = 2000
+speed = 750
+jump_height = 1800
+gravity = 2150
 
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="LeftWall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/LeftWall"]
+position = Vector2( -63.5, -1296 )
+shape = SubResource( 5 )
+
+[node name="RightWall" type="StaticBody2D" parent="Walls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
+position = Vector2( 3114, -1174 )
+shape = SubResource( 5 )
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Label" type="Label" parent="CanvasLayer/HUD"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -69.0
+margin_top = -29.0
+margin_right = 67.0
+margin_bottom = 93.0
+custom_fonts/font = ExtResource( 13 )
+text = "12:00"
+align = 1
+
+[connection signal="is_farmland" from="Floor" to="Friend" method="_on_Floor_is_farmland"]
+[connection signal="seed_planted" from="CropTileMap" to="Friend" method="_on_CropTileMap_seed_planted"]
+[connection signal="upgrade" from="CropTileMap" to="Friend" method="_on_CropTileMap_upgrade"]
 [connection signal="crop_harvested" from="Friend" to="CropTileMap" method="_on_Friend_crop_harvested"]
+[connection signal="is_crop_here" from="Friend" to="CropTileMap" method="_on_Friend_is_crop_here"]
+[connection signal="ray_find_tile" from="Friend" to="Floor" method="_on_Friend_ray_find_tile"]
