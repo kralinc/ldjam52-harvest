@@ -1,7 +1,8 @@
 extends TileMap
 
 signal upgrade
-signal seed_planted
+signal seed_planted(location)
+signal crop_destroyed(location)
 
 onready var CropArea = preload("res://CropArea.tscn")
 
@@ -40,18 +41,15 @@ func set_crop_level(crop):
 func destroy_crop(location):
 	set_cell(location.x, location.y, -1)
 	crop_lifetimes.erase(location)
-
+	emit_signal("crop_destroyed", location)
 
 func _on_Friend_crop_harvested(location):
 	if (get_cellv(location) == 4):
 		destroy_crop(location)
 		emit_signal("upgrade")
 
-
-
 func _on_Friend_is_crop_here(location):
 	if(get_cellv(location) == -1):
-		print("there is no crop there")
 		set_cellv(location, 0)
 		crop_lifetimes[location] = 0.0
-		emit_signal("seed_planted")
+		emit_signal("seed_planted", location)
