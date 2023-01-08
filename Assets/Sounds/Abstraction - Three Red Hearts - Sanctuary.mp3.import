@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Abstraction - Three Red Hearts - Sanctuary.mp3-d9639b201fdf83b380166b7d20ce0164.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Abstraction - Three Red Hearts - Sanctuary.mp3"
+dest_files=[ "res://.import/Abstraction - Three Red Hearts - Sanctuary.mp3-d9639b201fdf83b380166b7d20ce0164.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

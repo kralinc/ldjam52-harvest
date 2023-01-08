@@ -57,6 +57,9 @@ func harm(right, damage, kb):
 		if (health <= 0):
 			dead = true
 			$AnimationPlayer.play("Die")
+			$DieSound.play()
+		else:
+			$HitSound.play(0)
 
 func _on_Timer_timeout():
 	if (not dead):

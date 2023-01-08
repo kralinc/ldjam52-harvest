@@ -12,7 +12,7 @@ var crop_lifetimes  = Dictionary()
 func _ready():
 	var crops = get_used_cells()
 	for crop in crops:
-		crop_lifetimes[crop] = 0.0
+		crop_lifetimes[crop] = float(get_cellv(crop) * 10)
 		var ca = CropArea.instance()
 		add_child(ca)
 		ca.position = map_to_world(crop)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Abstraction - Three Red Hearts - Puzzle Pieces.mp3-0403c11fa07b1b84cd74ecd15067c3d5.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Abstraction - Three Red Hearts - Puzzle Pieces.mp3"
+dest_files=[ "res://.import/Abstraction - Three Red Hearts - Puzzle Pieces.mp3-0403c11fa07b1b84cd74ecd15067c3d5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

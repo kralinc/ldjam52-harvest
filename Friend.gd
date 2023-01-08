@@ -4,16 +4,21 @@ signal crop_harvested(location)
 signal ray_find_tile(location, has_seed)
 signal is_crop_here(location)
 
-export var speed = 100
-export var jump_height = 100
-export var dash_power = 3.0
-export var gravity = 100
-export var friction = 0.5
+export var speed = 750
+export var jump_height = 1800
+export var dash_power = 1.5
+export var gravity = 2150
+var friction = 0.5
 export var damage = 30.0
 export var knockback = -10.0
+export var cam_right = 3392
+
+var MAX_SPEED = 1800
+var MAX_JUMP_HEIGHT = 2500
 
 var vel = Vector2(0, 0)
 var jumped = false
+var djumped = false
 var dashed = false
 var air_time = 0
 var crop_just_harvested = false
@@ -35,20 +40,24 @@ onready var FIND_FLOOR = $FindFloor
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
+	$Camera2D.limit_right = cam_right
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var dir = Vector2(0, 0)
+	var dash_mod = 1
+	if (SPRITE.animation == "Dash"):
+		dash_mod = dash_power
 	if (Input.is_action_pressed("left")):
-		vel.x -= speed
+		vel.x -= speed * dash_mod
 		dir.x = -1
 		SPRITE.flip_h = false
 		SPRITE.offset.x = 0
 		WEAPON.position.x = 0
 		FIND_FLOOR.position.x = 120
 	if(Input.is_action_pressed("right")):
-		vel.x += speed
+		vel.x += speed * dash_mod
 		dir.x = 1
 		SPRITE.flip_h = true
 		SPRITE.offset.x = 200
@@ -61,14 +70,19 @@ func _physics_process(delta):
 		elif(dir.x != 0):
 			SPRITE.animation = "Run"
 		
-	if(Input.is_action_just_pressed("attack")):
+	if(Input.is_action_just_pressed("attack") and SPRITE.animation != "Attack"):
 		SPRITE.animation = "Attack"
+		$AttackSound.play(0)
 				
-	if(Input.is_action_just_pressed("seed")):
-		if (SEED.visible == false):
-			for area in HITBOX.get_overlapping_areas():
-				if (area.get_collision_layer_bit(3) == true):
-					SEED.visible = true
+	if(Input.is_action_just_pressed("dash") and not dashed):
+		dashed = true
+		SPRITE.animation = "Dash"
+		$DashSound.play(0)
+		
+	if (SEED.visible == false):
+		for area in HITBOX.get_overlapping_areas():
+			if (area.get_collision_layer_bit(3) == true):
+				SEED.visible = true
 					
 	if (FIND_FLOOR.is_colliding()):
 		emit_signal("ray_find_tile", FIND_FLOOR.get_collision_point(), SEED.visible)
@@ -76,6 +90,8 @@ func _physics_process(delta):
 	if (is_on_floor()):
 		dir.y = 0
 		dashed = false
+		jumped = false
+		djumped = false
 		air_time = 0
 		if (SPRITE.animation == "Jump"):
 			if (vel.x == 0):
@@ -93,14 +109,15 @@ func _physics_process(delta):
 		
 	if(Input.is_action_just_pressed("jump")):
 		if (is_on_floor() or (air_time < AIR_TIME_GRACE_PERIOD and not jumped)):
+			$JumpSound.play(0)
 			vel.y = -jump_height
 			jumped = true
 			SPRITE.animation = "Jump"
-		elif(jumped and not dashed):
+		elif((jumped or air_time >= AIR_TIME_GRACE_PERIOD) and not djumped):
 			vel.y = -jump_height
-			vel.x *= dash_power
-			dashed = true
-			SPRITE.animation = "Dash"
+			djumped = true
+			SPRITE.animation = "Jump"
+			$JumpSound.play(0)
 			
 	if (SPRITE.animation == "Attack"):
 		for area in WEAPON.get_overlapping_areas():
@@ -132,8 +149,8 @@ func _on_AnimatedSprite_animation_finished():
 			SPRITE.animation = "default"
 		else:
 			SPRITE.animation = "Run"
-	elif (abs(vel.x) > speed):
-		SPRITE.animation = "Dash"
+	elif (SPRITE.animation == "Dash"):
+		SPRITE.animation = "Jump"
 	else:
 		SPRITE.animation = "Jump"
 
@@ -141,24 +158,28 @@ func _on_AnimatedSprite_animation_finished():
 func _on_CropTileMap_upgrade():
 	harvested += 1
 	crop_just_harvested = true
-	var upgrade_type = randi() % 5
+	var upgrade_type = randi() % 4
 	var upgrade_amount = randi() % 10 + 1
 	LABEL.text = "UPGRADE!\n+" + str(upgrade_amount) + "% "
 	if (upgrade_type == 0):
-		LABEL.text += "Speed"
-		speed += (speed * upgrade_amount / 100)
+		if (speed < MAX_SPEED):
+			LABEL.text += "Speed"
+			speed += (speed * upgrade_amount / 100)
+		else:
+			_on_CropTileMap_upgrade()
 	elif (upgrade_type == 1):
-		LABEL.text += "Jump"
-		jump_height += (jump_height * upgrade_amount / 100)
+		if (jump_height < MAX_JUMP_HEIGHT):
+			LABEL.text += "Jump"
+			jump_height += (jump_height * upgrade_amount / 100)
+			gravity += (gravity * upgrade_amount / 200)
+		else:
+			_on_CropTileMap_upgrade()
 	elif (upgrade_type == 2):
 		LABEL.text += "Knockback"
 		knockback += (knockback * upgrade_amount / 100)
-	elif (upgrade_type == 3):
+	else:
 		LABEL.text += "Damage"
 		damage += damage * upgrade_amount / 100
-	else:
-		LABEL.text += "Dash"
-		dash_power += dash_power * upgrade_amount / 100
 			
 func set_label_animation():
 	if (LABEL_ANIM.is_playing()):

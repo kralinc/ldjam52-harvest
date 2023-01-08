@@ -1,172 +1,22 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Assets/Images/farm.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Images/grass.png" type="Texture" id=2]
+[ext_resource path="res://CropTileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Friend.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Images/crop4.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Images/crop3.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Images/crop0.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Images/crop2.png" type="Texture" id=7]
 [ext_resource path="res://Seed Shack.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Assets/Images/crop1.png" type="Texture" id=9]
-[ext_resource path="res://CropTileMap.gd" type="Script" id=10]
-[ext_resource path="res://Floor.gd" type="Script" id=11]
 [ext_resource path="res://GM.gd" type="Script" id=12]
 [ext_resource path="res://Assets/Images/Font.tres" type="DynamicFont" id=13]
-[ext_resource path="res://Assets/Images/stone.png" type="Texture" id=14]
 [ext_resource path="res://Pauser.gd" type="Script" id=15]
-
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 64, 64, 0, 64, 0, 0, 64, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=6]
-points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
-
-[sub_resource type="TileSet" id=3]
-0/name = "farm.png 0"
-0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 64, 64 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 1 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
-0/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-0/z_index = 0
-1/name = "grass.png 1"
-1/texture = ExtResource( 2 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 64, 64 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape = SubResource( 2 )
-1/shape_one_way = false
-1/shape_one_way_margin = 1.0
-1/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-1/z_index = 0
-2/name = "stone.png 2"
-2/texture = ExtResource( 14 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 0, 64, 64 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape = SubResource( 6 )
-2/shape_one_way = false
-2/shape_one_way_margin = 1.0
-2/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 6 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-2/z_index = 0
-
-[sub_resource type="TileSet" id=4]
-0/name = "crop0.png 0"
-0/texture = ExtResource( 6 )
-0/tex_offset = Vector2( 0, -64 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 64, 128 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "crop1.png 1"
-1/texture = ExtResource( 9 )
-1/tex_offset = Vector2( 0, -64 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 0, 0, 64, 128 )
-1/tile_mode = 0
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "crop2.png 2"
-2/texture = ExtResource( 7 )
-2/tex_offset = Vector2( 0, -64 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 0, 64, 128 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
-3/name = "crop3.png 3"
-3/texture = ExtResource( 5 )
-3/tex_offset = Vector2( 0, -64 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 0, 0, 64, 128 )
-3/tile_mode = 0
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 0
-4/name = "crop4.png 4"
-4/texture = ExtResource( 4 )
-4/tex_offset = Vector2( 0, -64 )
-4/modulate = Color( 1, 1, 1, 1 )
-4/region = Rect2( 0, 0, 64, 128 )
-4/tile_mode = 0
-4/occluder_offset = Vector2( 0, 0 )
-4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, 0 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape_one_way = false
-4/shape_one_way_margin = 0.0
-4/shapes = [  ]
-4/z_index = 0
+[ext_resource path="res://Assets/Images/bg.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Images/torielfont.tres" type="DynamicFont" id=18]
+[ext_resource path="res://Assets/Sounds/Abstraction - Three Red Hearts - Penultimate.mp3" type="AudioStream" id=19]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 55.5, 1414.5 )
 
 [sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 1556.25, 82.5 )
+extents = Vector2( 1712.75, 82.5 )
 
 [sub_resource type="DynamicFontData" id=8]
 font_path = "res://Assets/ShadowsIntoLight-Regular.ttf"
@@ -177,31 +27,51 @@ outline_size = 10
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 8 )
 
+[sub_resource type="Animation" id=10]
+resource_name = "Fadeout"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "LoseFade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
+
 [node name="Root" type="Node2D"]
 script = ExtResource( 12 )
 
-[node name="Floor" type="TileMap" parent="."]
-tile_set = SubResource( 3 )
-format = 1
-tile_data = PoolIntArray( -1638399, 0, 0, -1638398, 0, 0, -1638397, 0, 0, -1638396, 0, 0, -1638395, 0, 0, -1638376, 0, 0, -1638375, 0, 0, -1638374, 0, 0, -1638373, 0, 0, -1376245, 0, 0, -1376244, 0, 0, -1376243, 0, 0, -1179628, 0, 0, -1179627, 0, 0, -1114070, 0, 0, -1114069, 0, 0, -1114068, 0, 0, -917500, 0, 0, -917499, 0, 0, -851939, 0, 0, -851938, 0, 0, -851937, 0, 0, -524277, 0, 0, -524276, 0, 0, -524275, 0, 0, -524274, 0, 0, -393216, 0, 0, -393215, 0, 0, -393214, 0, 0, -327658, 0, 0, -327657, 0, 0, -327656, 0, 0, -327637, 0, 0, -327636, 0, 0, -327635, 0, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 0, 0, 6, 0, 0, 7, 2, 0, 8, 2, 0, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 0, 0, 13, 0, 0, 14, 0, 0, 15, 2, 0, 16, 2, 0, 17, 2, 0, 18, 2, 0, 19, 2, 0, 20, 0, 0, 21, 0, 0, 22, 2, 0, 23, 2, 0, 24, 2, 0, 25, 2, 0, 26, 2, 0, 27, 2, 0, 28, 2, 0, 29, 2, 0, 30, 2, 0, 31, 2, 0, 32, 2, 0, 33, 2, 0, 34, 2, 0, 35, 2, 0, 36, 2, 0, 37, 2, 0, 38, 2, 0, 39, 2, 0, 40, 0, 0, 41, 0, 0, 42, 0, 0, 43, 2, 0, 44, 2, 0, 45, 2, 0, 46, 2, 0, 47, 2, 0 )
-script = ExtResource( 11 )
+[node name="Floor" parent="." instance=ExtResource( 2 )]
+tile_data = PoolIntArray( -1966041, 2, 0, -1966040, 0, 0, -1966039, 0, 0, -1966038, 0, 0, -1966037, 0, 0, -1966036, 0, 0, -1966035, 0, 0, -1966034, 2, 0, -1900539, 2, 0, -1900538, 0, 0, -1900537, 0, 0, -1900536, 0, 0, -1900535, 0, 0, -1900534, 0, 0, -1900533, 0, 0, -1900532, 2, 0, -1310685, 2, 0, -1310684, 0, 0, -1310683, 0, 0, -1310682, 0, 0, -1310681, 2, 0, -1245169, 2, 0, -1245168, 0, 0, -1245167, 0, 0, -1245166, 0, 0, -1245165, 2, 0, -983037, 2, 0, -983036, 0, 0, -983035, 0, 0, -983034, 0, 0, -983033, 2, 0, -983015, 2, 0, -983014, 0, 0, -983013, 0, 0, -983012, 0, 0, -983011, 2, 0, -982993, 2, 0, -982992, 0, 0, -982991, 0, 0, -982990, 0, 0, -982989, 2, 0, -458735, 2, 0, -458734, 0, 0, -458733, 0, 0, -458732, 2, 0, -458717, 2, 0, -458716, 0, 0, -458715, 0, 0, -458714, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 9, 0, 0, 10, 0, 0, 11, 2, 0, 12, 2, 0, 13, 2, 0, 14, 2, 0, 15, 2, 0, 16, 2, 0, 17, 2, 0, 18, 2, 0, 19, 2, 0, 20, 2, 0, 21, 2, 0, 22, 2, 0, 23, 2, 0, 24, 2, 0, 25, 2, 0, 26, 2, 0, 27, 2, 0, 28, 2, 0, 29, 2, 0, 30, 2, 0, 31, 2, 0, 32, 2, 0, 33, 2, 0, 34, 2, 0, 35, 2, 0, 36, 2, 0, 37, 2, 0, 38, 2, 0, 39, 2, 0, 40, 2, 0, 41, 0, 0, 42, 0, 0, 43, 2, 0, 44, 2, 0, 45, 2, 0, 46, 2, 0, 47, 2, 0, 48, 2, 0, 49, 2, 0, 50, 2, 0, 51, 2, 0, 52, 2, 0 )
 
-[node name="CropTileMap" type="TileMap" parent="."]
-tile_set = SubResource( 4 )
-collision_layer = 4
-collision_mask = 4
-format = 1
-tile_data = PoolIntArray( -1703935, 0, 0, -1703934, 0, 0, -1703933, 0, 0, -1703932, 0, 0, -1703931, 0, 0, -1703912, 0, 0, -1703911, 0, 0, -1703910, 0, 0, -1703909, 0, 0, -1441781, 0, 0, -1441780, 0, 0, -1441779, 0, 0, -1245164, 0, 0, -1245163, 0, 0, -1179606, 0, 0, -1179605, 0, 0, -1179604, 0, 0, -983036, 0, 0, -983035, 0, 0, -917475, 0, 0, -917474, 0, 0, -917473, 0, 0, -589813, 0, 0, -589812, 0, 0, -589811, 0, 0, -589810, 0, 0, -458752, 0, 0, -458751, 0, 0, -458750, 0, 0, -393194, 0, 0, -393193, 0, 0, -393192, 0, 0, -393173, 0, 0, -393172, 0, 0, -393171, 0, 0, -65531, 0, 0, -65530, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65516, 0, 0, -65515, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0 )
-script = ExtResource( 10 )
+[node name="CropTileMap" parent="." instance=ExtResource( 1 )]
 
 [node name="Seed Shack" parent="." instance=ExtResource( 8 )]
-position = Vector2( 1779, -84 )
+position = Vector2( 1783, -104 )
 
 [node name="Friend" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1835, -340 )
-speed = 750
-jump_height = 1800
-gravity = 2150
+position = Vector2( 421, -147 )
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -214,13 +84,13 @@ shape = SubResource( 5 )
 [node name="RightWall" type="StaticBody2D" parent="Walls"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/RightWall"]
-position = Vector2( 3114, -1174 )
+position = Vector2( 3442, -1169 )
 shape = SubResource( 5 )
 
 [node name="Roof" type="StaticBody2D" parent="Walls"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Roof"]
-position = Vector2( 1542.75, -2293 )
+position = Vector2( 1693, -2502 )
 shape = SubResource( 7 )
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -234,6 +104,38 @@ __meta__ = {
 "_edit_lock_": true
 }
 
+[node name="PauseMenu" type="Control" parent="Canvas/HUD"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PausedLabel" type="Label" parent="Canvas/HUD/PauseMenu"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -187.0
+margin_top = 86.0
+margin_right = 187.0
+margin_bottom = 293.0
+custom_fonts/font = SubResource( 9 )
+text = "PAUSED"
+
+[node name="RestartButton" type="Button" parent="Canvas/HUD/PauseMenu"]
+margin_left = 351.0
+margin_top = 297.0
+margin_right = 644.0
+margin_bottom = 400.0
+custom_fonts/font = ExtResource( 18 )
+text = "Restart"
+
+[node name="MenuButton" type="Button" parent="Canvas/HUD/PauseMenu"]
+margin_left = 351.0
+margin_top = 433.0
+margin_right = 644.0
+margin_bottom = 536.0
+custom_fonts/font = ExtResource( 18 )
+text = "Main Menu"
+
 [node name="GameTime" type="Label" parent="Canvas/HUD"]
 anchor_left = 0.5
 anchor_right = 0.5
@@ -244,10 +146,16 @@ margin_bottom = 94.0
 custom_fonts/font = ExtResource( 13 )
 text = "12:00"
 align = 1
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Canvas/HUD"]
 position = Vector2( 49, -3 )
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="HarvestedText" type="Label" parent="Canvas/HUD"]
 margin_left = 87.0
@@ -256,19 +164,22 @@ margin_right = 127.0
 margin_bottom = 85.0
 custom_fonts/font = ExtResource( 13 )
 text = "0"
+__meta__ = {
+"_edit_lock_": true
+}
 
-[node name="PausedLabel" type="Label" parent="Canvas/HUD"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -187.0
-margin_top = -103.5
-margin_right = 187.0
-margin_bottom = 103.5
-custom_fonts/font = SubResource( 9 )
-text = "PAUSED"
+[node name="ColorRect" type="ColorRect" parent="Canvas"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 1, 1, 1, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HUDAnimator" type="AnimationPlayer" parent="Canvas"]
+anims/Fadeout = SubResource( 10 )
+anims/LoseFade = SubResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 1500, -1000 )
@@ -276,6 +187,27 @@ zoom = Vector2( 3, 4 )
 
 [node name="Pauser" type="Node" parent="."]
 script = ExtResource( 15 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.5, 0.5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 1582.5, -1427 )
+scale = Vector2( 4.1, 2.889 )
+texture = ExtResource( 16 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+volume_db = -5.0
+autoplay = true
 
 [connection signal="is_farmland" from="Floor" to="Friend" method="_on_Floor_is_farmland"]
 [connection signal="crop_destroyed" from="CropTileMap" to="." method="_on_CropTileMap_crop_destroyed"]
@@ -285,4 +217,7 @@ script = ExtResource( 15 )
 [connection signal="crop_harvested" from="Friend" to="CropTileMap" method="_on_Friend_crop_harvested"]
 [connection signal="is_crop_here" from="Friend" to="CropTileMap" method="_on_Friend_is_crop_here"]
 [connection signal="ray_find_tile" from="Friend" to="Floor" method="_on_Friend_ray_find_tile"]
+[connection signal="pressed" from="Canvas/HUD/PauseMenu/RestartButton" to="Pauser" method="_on_RestartButton_pressed"]
+[connection signal="pressed" from="Canvas/HUD/PauseMenu/MenuButton" to="Pauser" method="_on_MenuButton_pressed"]
+[connection signal="animation_finished" from="Canvas/HUDAnimator" to="." method="_on_HUDAnimator_animation_finished"]
 [connection signal="paused" from="Pauser" to="." method="_on_Pauser_paused"]

@@ -6,6 +6,8 @@
 extents = Vector2( 232.5, 115 )
 
 [node name="Seed Shack" type="Sprite"]
+position = Vector2( 21, -20 )
+scale = Vector2( 1.14, 1.23529 )
 texture = ExtResource( 1 )
 
 [node name="Area2D" type="Area2D" parent="."]

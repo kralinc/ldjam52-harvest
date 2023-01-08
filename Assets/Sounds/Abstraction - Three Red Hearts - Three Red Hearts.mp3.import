@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Abstraction - Three Red Hearts - Three Red Hearts.mp3-3a18ad331fa24d8072784e6d28b0942d.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Abstraction - Three Red Hearts - Three Red Hearts.mp3"
+dest_files=[ "res://.import/Abstraction - Three Red Hearts - Three Red Hearts.mp3-3a18ad331fa24d8072784e6d28b0942d.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Abstraction - Three Red Hearts - Penultimate.mp3-22d10d9c6e9898b70609bfd17d6eb358.mp3str"
+
+[deps]
+
+source_file="res://Assets/Sounds/Abstraction - Three Red Hearts - Penultimate.mp3"
+dest_files=[ "res://.import/Abstraction - Three Red Hearts - Penultimate.mp3-22d10d9c6e9898b70609bfd17d6eb358.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0
