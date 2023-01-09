@@ -206,7 +206,7 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
-volume_db = -5.0
+volume_db = -10.0
 autoplay = true
 
 [connection signal="is_farmland" from="Floor" to="Friend" method="_on_Floor_is_farmland"]

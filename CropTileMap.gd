@@ -39,7 +39,7 @@ func set_crop_level(crop):
 	set_cell(crop.x, crop.y, tile)
 	
 func destroy_crop(location):
-	set_cell(location.x, location.y, -1)
+	set_cellv(location, -1)
 	crop_lifetimes.erase(location)
 	emit_signal("crop_destroyed", location)
 

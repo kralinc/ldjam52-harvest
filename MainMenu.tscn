@@ -84,7 +84,7 @@ texture = ExtResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -5.0
+volume_db = -10.0
 autoplay = true
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

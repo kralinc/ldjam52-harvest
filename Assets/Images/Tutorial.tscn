@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Friend.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Floor.tscn" type="PackedScene" id=2]
@@ -8,6 +8,13 @@
 [ext_resource path="res://Assets/Sounds/Abstraction - Three Red Hearts - Three Red Hearts.mp3" type="AudioStream" id=6]
 [ext_resource path="res://Assets/Images/bg.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Images/Tutorial.gd" type="Script" id=8]
+
+[sub_resource type="DynamicFontData" id=7]
+font_path = "res://Assets/ShadowsIntoLight-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+size = 50
+font_data = SubResource( 7 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 240.25, 332.5 )
@@ -51,6 +58,16 @@ text = "Left Arrow [<-] to Midair Dash"
 align = 1
 autowrap = true
 
+[node name="Label11" type="Label" parent="Labels"]
+margin_left = 2370.0
+margin_top = -270.0
+margin_right = 2919.0
+margin_bottom = -73.0
+custom_fonts/font = ExtResource( 4 )
+text = "Double Jump and Dash to get across"
+align = 1
+autowrap = true
+
 [node name="Label4" type="Label" parent="Labels"]
 margin_left = 3084.0
 margin_top = -1040.0
@@ -63,11 +80,21 @@ autowrap = true
 
 [node name="Label5" type="Label" parent="Labels"]
 margin_left = 3686.0
-margin_top = -1178.0
+margin_top = -1193.0
 margin_right = 4348.0
-margin_bottom = -981.0
+margin_bottom = -996.0
 custom_fonts/font = ExtResource( 4 )
 text = "Harvest Crops for Upgrades"
+align = 1
+autowrap = true
+
+[node name="Label10" type="Label" parent="Labels"]
+margin_left = 4106.0
+margin_top = -1027.0
+margin_right = 4495.0
+margin_bottom = -830.0
+custom_fonts/font = SubResource( 8 )
+text = "Walking on farmland plants new crops"
 align = 1
 autowrap = true
 
@@ -87,7 +114,7 @@ margin_top = -1132.0
 margin_right = 6761.0
 margin_bottom = -935.0
 custom_fonts/font = ExtResource( 4 )
-text = "Seeds can replant lost Farmland"
+text = "Seeds can recover lost Farmland"
 align = 1
 autowrap = true
 
@@ -122,7 +149,7 @@ position = Vector2( 5172, -930 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -5.0
+volume_db = -10.0
 autoplay = true
 
 [node name="Friend" parent="." instance=ExtResource( 1 )]

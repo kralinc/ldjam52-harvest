@@ -14,7 +14,7 @@ var won = false
 var lost = false
 
 var DESTROY_FARM_TIME = 15
-var HARVEST_GOAL = 100
+var HARVEST_GOAL = 80
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -70,7 +70,7 @@ func update_timer(delta):
 		$Canvas/HUDAnimator.play("LoseFade")
 	
 func update_hud():
-	$Canvas/HUD/HarvestedText.text = str($Friend.harvested) + "/100"
+	$Canvas/HUD/HarvestedText.text = str($Friend.harvested) + "/" + str(HARVEST_GOAL)
 
 
 func _on_CropTileMap_crop_destroyed(location):

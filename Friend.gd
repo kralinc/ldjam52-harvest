@@ -32,7 +32,7 @@ onready var SPRITE = $AnimatedSprite
 onready var WEAPON = $Weapon
 onready var WEAPON_COL = $Weapon/CollisionShape2D
 onready var LABEL = $Label
-onready var LABEL_ANIM = $Label/AnimationPlayer
+onready var LABEL_ANIM = $AnimationPlayer
 onready var HITBOX = $Hitbox
 onready var SEED = $Seed
 onready var FIND_FLOOR = $FindFloor
@@ -78,6 +78,8 @@ func _physics_process(delta):
 		dashed = true
 		SPRITE.animation = "Dash"
 		$DashSound.play(0)
+		$SpriteAnimation.stop(true)
+		$SpriteAnimation.play("DashAnim")
 		
 	if (SEED.visible == false):
 		for area in HITBOX.get_overlapping_areas():
@@ -158,29 +160,31 @@ func _on_AnimatedSprite_animation_finished():
 func _on_CropTileMap_upgrade():
 	harvested += 1
 	crop_just_harvested = true
-	var upgrade_type = randi() % 4
-	var upgrade_amount = randi() % 10 + 1
-	LABEL.text = "UPGRADE!\n+" + str(upgrade_amount) + "% "
-	if (upgrade_type == 0):
-		if (speed < MAX_SPEED):
-			LABEL.text += "Speed"
-			speed += (speed * upgrade_amount / 100)
+	var upgraded = false
+		
+	while not upgraded:
+		var upgrade_type = randi() % 4
+		var upgrade_amount = randi() % 10 + 1
+		LABEL.text = "UPGRADE!\n+" + str(upgrade_amount) + "% "
+		if (upgrade_type == 0):
+			if (speed < MAX_SPEED):
+				LABEL.text += "Speed"
+				speed += (speed * upgrade_amount / 100)
+				upgraded = true
+		elif (upgrade_type == 1):
+			if (jump_height < MAX_JUMP_HEIGHT):
+				LABEL.text += "Jump"
+				jump_height += (jump_height * upgrade_amount / 100)
+				gravity += (gravity * upgrade_amount / 200)
+				upgraded = true
+		elif (upgrade_type == 2):
+			LABEL.text += "Knockback"
+			knockback += (knockback * upgrade_amount / 100)
+			upgraded = true
 		else:
-			_on_CropTileMap_upgrade()
-	elif (upgrade_type == 1):
-		if (jump_height < MAX_JUMP_HEIGHT):
-			LABEL.text += "Jump"
-			jump_height += (jump_height * upgrade_amount / 100)
-			gravity += (gravity * upgrade_amount / 200)
-		else:
-			_on_CropTileMap_upgrade()
-	elif (upgrade_type == 2):
-		LABEL.text += "Knockback"
-		knockback += (knockback * upgrade_amount / 100)
-	else:
-		LABEL.text += "Damage"
-		damage += damage * upgrade_amount / 100
-			
+			LABEL.text += "Damage"
+			damage += damage * upgrade_amount / 100
+			upgraded = true			
 func set_label_animation():
 	if (LABEL_ANIM.is_playing()):
 		LABEL_ANIM.stop(true)
